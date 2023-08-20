@@ -1,0 +1,52 @@
+[
+    {
+        "_id": "64deb0af48eca1de2589dcf7",
+        "name": "Молоко 'Ферма 2,5%'",
+        "price": 39
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs2",
+        "name": "Груша 'Кармен'",
+        "price": 25
+    },
+    {
+        "_id": "64deb0af48eca1de2589d2d1",
+        "name": "Хліб 'Крафтяр подовий Вулкан міні'",
+        "price": 18
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs3",
+        "name": "Кавун",
+        "price": 62
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs4",
+        "name": "Йогурт 'Галичина'",
+        "price": 59
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs5",
+        "name": "Банан",
+        "price": 36
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs6",
+        "name": "Ківі",
+        "price": 160
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs7",
+        "name": "Морозиво 'Хрещатик'",
+        "price": 90
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs8",
+        "name": "Сир 'Комо Голландія'",
+        "price": 390
+    },
+    {
+        "_id": "64deb0af48eca1de2589dcs9",
+        "name": "Вода 'Моршинська без газу'",
+        "price": 20
+    }
+]
