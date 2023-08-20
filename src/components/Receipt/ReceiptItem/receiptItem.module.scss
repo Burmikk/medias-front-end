@@ -1,0 +1,31 @@
+.receipt_item {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+.number {
+    margin-right: 10px;
+}
+.name {
+    flex-grow: 1;
+}
+.quantity_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 100px;
+}
+.btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.quantity {
+}
+.quantity_list {
+    text-align: center;
+}
+.summ {
+    flex-basis: 150px;
+    text-align: center;
+}
