@@ -6,7 +6,8 @@ const ProductsList = () => {
     const dispatch = useDispatch();
 
     const addToReceipt = (value) => {
-        dispatch(addProduct(value));
+        const productToAdd = { ...value, quantity: 1 };
+        dispatch(addProduct(productToAdd));
     };
 
     const allProducts = products.map((item) => {

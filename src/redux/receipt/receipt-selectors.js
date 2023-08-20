@@ -1,1 +1,1 @@
-export const selectAddProducts = (state) => state.receipt.receipt;
+export const selectReceiptList = (state) => state.receipt.receipt;

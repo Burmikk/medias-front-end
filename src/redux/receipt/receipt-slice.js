@@ -19,8 +19,12 @@ const receiptSlice = createSlice({
         closeReceipt: (state) => {
             state.receipt = [];
         },
+        increaseProduct: (state, { payload }) => {
+            const existingProduct = state.receipt.find((item) => item._id === payload._id);
+            existingProduct.quantity += 1;
+        },
     },
 });
 
-export const { addProduct, removeProduct, closeReceipt } = receiptSlice.actions;
+export const { addProduct, removeProduct, closeReceipt, increaseProduct } = receiptSlice.actions;
 export default receiptSlice.reducer;
