@@ -1,9 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import scss from "./receipt.module.scss";
 import { selectReceiptList } from "../../redux/receipt/receipt-selectors";
 import ReceiptItem from "./ReceiptItems/ReceiptItems";
+import { closeReceipt } from "../../redux/receipt/receipt-slice";
 const Receipt = () => {
     const receipt = useSelector(selectReceiptList);
+    const dispatch = useDispatch();
+
+    const handleCloseReceipt = () => {
+        dispatch(closeReceipt());
+    };
 
     const summ = receipt.reduce((acc, product) => {
         return acc + product.quantity * product.price;
@@ -12,7 +18,7 @@ const Receipt = () => {
     if (receipt.length === 0) {
         return (
             <div className={scss.receipt_container}>
-                <button>Створити чек</button>
+                <h3 className={scss.text}>Для створення чеку виберіть товар</h3>
             </div>
         );
     }
@@ -32,7 +38,9 @@ const Receipt = () => {
                     <p>
                         Загальна сума товарів: <span className={scss.summ}>{summ}</span>
                     </p>
-                    <button>Закрити чек</button>
+                    <button className={scss.btn} onClick={handleCloseReceipt}>
+                        Закрити чек
+                    </button>
                 </div>
             </div>
         );

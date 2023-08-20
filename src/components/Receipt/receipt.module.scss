@@ -1,8 +1,15 @@
 .receipt_container {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     flex-grow: 1;
     background-color: #fff;
+}
+.text {
+    text-align: center;
+    width: 250px;
+    margin: 0 auto;
+    line-height: 1.5;
 }
 .receipt_list {
     flex-grow: 1;
@@ -33,10 +40,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 40px;
     background-color: rgb(246, 246, 246);
     padding: 10px;
 }
 .summ {
     font-weight: 700;
+}
+
+.btn {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
 }
