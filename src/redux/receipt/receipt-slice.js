@@ -1,11 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchCreateReceipt } from "./receipt-operations";
 const initialState = {
     receipt: [],
+    error: null,
+    isLoading: false,
 };
 
 const receiptSlice = createSlice({
     name: "receipt",
     initialState,
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCreateReceipt.pending, (state) => {
+                state.error = null;
+                state.isLoading = true;
+            })
+            .addCase(fetchCreateReceipt.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(fetchCreateReceipt.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.error = null;
+                state.error = payload;
+            });
+    },
+
     reducers: {
         addProduct: (state, { payload }) => {
             const existingProduct = state.receipt.find((item) => item._id === payload._id);

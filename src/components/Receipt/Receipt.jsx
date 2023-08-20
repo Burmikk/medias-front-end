@@ -3,7 +3,9 @@ import scss from "./receipt.module.scss";
 import { selectReceiptList } from "../../redux/receipt/receipt-selectors";
 import ReceiptItem from "./ReceiptItems/ReceiptItems";
 import { closeReceipt } from "../../redux/receipt/receipt-slice";
+import { useEffect, useState } from "react";
 const Receipt = () => {
+    const [total, setTotal] = useState();
     const receipt = useSelector(selectReceiptList);
     const dispatch = useDispatch();
 
@@ -11,9 +13,12 @@ const Receipt = () => {
         dispatch(closeReceipt());
     };
 
-    const summ = receipt.reduce((acc, product) => {
-        return acc + product.quantity * product.price;
-    }, 0);
+    useEffect(() => {
+        const summ = receipt.reduce((acc, product) => {
+            return acc + product.quantity * product.price;
+        }, 0);
+        setTotal(summ);
+    }, [receipt]);
 
     if (receipt.length === 0) {
         return (
@@ -36,7 +41,7 @@ const Receipt = () => {
                 </ul>
                 <div className={scss.receipt_info}>
                     <p>
-                        Загальна сума товарів: <span className={scss.summ}>{summ}</span>
+                        Загальна сума товарів: <span className={scss.total}>{total}</span>
                     </p>
                     <button className={scss.btn} onClick={handleCloseReceipt}>
                         Закрити чек
