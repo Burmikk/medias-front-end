@@ -1,0 +1,26 @@
+.receipt_container {
+    flex-grow: 1;
+    background-color: #fff;
+}
+
+.receipt_item {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+.number {
+    margin-right: 10px;
+}
+.name {
+    flex-grow: 1;
+}
+
+.quantity {
+    text-align: center;
+    flex-basis: 100px;
+}
+
+.summ {
+    flex-basis: 150px;
+    text-align: center;
+}
