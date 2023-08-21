@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCreateReceipt, fetchCloseReceipt } from "./receipt-operations";
+import { fetchCreateReceipt, fetchCloseReceipt, fetchAddItem, fetchEditItem } from "./receipt-operations";
 const initialState = {
     receipt: [],
     receiptId: "",
@@ -22,7 +22,6 @@ const receiptSlice = createSlice({
             })
             .addCase(fetchCreateReceipt.rejected, (state, { payload }) => {
                 state.isLoading = false;
-                state.error = null;
                 state.error = payload;
             })
             .addCase(fetchCloseReceipt.pending, (state) => {
@@ -34,7 +33,28 @@ const receiptSlice = createSlice({
             })
             .addCase(fetchCloseReceipt.rejected, (state, { payload }) => {
                 state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(fetchAddItem.pending, (state) => {
                 state.error = null;
+                state.isLoading = true;
+            })
+            .addCase(fetchAddItem.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(fetchAddItem.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(fetchEditItem.pending, (state) => {
+                state.error = null;
+                state.isLoading = true;
+            })
+            .addCase(fetchEditItem.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(fetchEditItem.rejected, (state, { payload }) => {
+                state.isLoading = false;
                 state.error = payload;
             });
     },
@@ -53,11 +73,15 @@ const receiptSlice = createSlice({
             state.receipt = [];
         },
         increaseProduct: (state, { payload }) => {
-            const existingProduct = state.receipt.find((item) => item._id === payload._id);
+            const existingProduct = state.receipt.find((item) => item._id === payload);
             existingProduct.quantity += 1;
+        },
+        decreaseProduct: (state, { payload }) => {
+            const existingProduct = state.receipt.find((item) => item._id === payload);
+            existingProduct.quantity -= 1;
         },
     },
 });
 
-export const { addProduct, removeProduct, closeReceipt, increaseProduct } = receiptSlice.actions;
+export const { addProduct, removeProduct, closeReceipt, increaseProduct, decreaseProduct } = receiptSlice.actions;
 export default receiptSlice.reducer;
