@@ -45,11 +45,9 @@ export const fetchAddItem = createAsyncThunk("itmes/fetchAddItem", async (value,
 
 export const fetchEditItem = createAsyncThunk("itmes/fetchEditItem", async (value, { rejectWithValue }) => {
     try {
-        if (value.quantity > 0) {
-            const { data } = await editItem(value);
+        const { data } = await editItem(value);
 
-            return data;
-        }
+        return data;
     } catch ({ response }) {
         return rejectWithValue(response);
     }
