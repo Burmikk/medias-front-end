@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import scss from "./receipt.module.scss";
 import { selectReceiptList, selectReceipId } from "../../redux/receipt/receipt-selectors";
 import ReceiptItem from "./ReceiptItems/ReceiptItems";
-import { closeReceipt } from "../../redux/receipt/receipt-slice";
 import { useEffect, useState } from "react";
 import { fetchCloseReceipt } from "../../redux/receipt/receipt-operations";
 const Receipt = () => {
@@ -17,7 +16,6 @@ const Receipt = () => {
             receiptId,
             total,
         };
-        dispatch(closeReceipt());
         dispatch(fetchCloseReceipt(value));
     };
 

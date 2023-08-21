@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import scss from "./item.module.scss";
-import { useState, useEffect } from "react";
-import { increaseProduct, decreaseProduct, removeProduct } from "../../../redux/receipt/receipt-slice";
+import { useEffect } from "react";
 import { fetchEditItem, fetchRemoveItem } from "../../../redux/receipt/receipt-operations";
 
 const Item = ({ product, productIndex }) => {

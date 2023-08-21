@@ -38,6 +38,8 @@ const receiptSlice = createSlice({
             })
             .addCase(fetchCloseReceipt.fulfilled, (state) => {
                 state.isLoading = false;
+                state.receipt = [];
+                state.receiptId = "";
             })
             .addCase(fetchCloseReceipt.rejected, (state, { payload }) => {
                 state.isLoading = false;
@@ -88,20 +90,8 @@ const receiptSlice = createSlice({
         addProductsList: (state, { payload }) => {
             state.productsList = payload;
         },
-        addProduct: (state, { payload }) => {
-            const existingProduct = state.receipt.find((item) => item._id === payload._id);
-            if (!existingProduct) {
-                state.receipt = [...state.receipt, payload];
-            }
-        },
-        removeProduct: (state, { payload }) => {
-            state.receipt = state.receipt.filter((item) => item._id !== payload);
-        },
-        closeReceipt: (state) => {
-            state.receipt = [];
-        },
     },
 });
 
-export const { addProduct, removeProduct, closeReceipt, addProductsList } = receiptSlice.actions;
+export const { addProductsList } = receiptSlice.actions;
 export default receiptSlice.reducer;
