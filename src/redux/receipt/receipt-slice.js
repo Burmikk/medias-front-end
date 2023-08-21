@@ -24,7 +24,6 @@ const receiptSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchCreateReceipt.fulfilled, (state, { payload }) => {
-                console.log("payload--->", payload);
                 state.isLoading = false;
                 state.receiptId = payload.data._id;
                 state.receipt = [payload.item];
@@ -60,8 +59,12 @@ const receiptSlice = createSlice({
                 state.error = null;
                 state.isLoading = true;
             })
-            .addCase(fetchEditItem.fulfilled, (state) => {
+            .addCase(fetchEditItem.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
+                const existingItemIndex = state.receipt.findIndex((product) => product._id === payload._id);
+                if (existingItemIndex !== -1) {
+                    state.receipt[existingItemIndex].quantity = payload.quantity;
+                }
             })
             .addCase(fetchEditItem.rejected, (state, { payload }) => {
                 state.isLoading = false;
@@ -71,8 +74,9 @@ const receiptSlice = createSlice({
                 state.error = null;
                 state.isLoading = true;
             })
-            .addCase(fetchRemoveItem.fulfilled, (state) => {
+            .addCase(fetchRemoveItem.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
+                state.receipt = state.receipt.filter((item) => item._id !== payload);
             })
             .addCase(fetchRemoveItem.rejected, (state, { payload }) => {
                 state.isLoading = false;
@@ -96,17 +100,8 @@ const receiptSlice = createSlice({
         closeReceipt: (state) => {
             state.receipt = [];
         },
-        increaseProduct: (state, { payload }) => {
-            const existingProduct = state.receipt.find((item) => item._id === payload);
-            existingProduct.quantity += 1;
-        },
-        decreaseProduct: (state, { payload }) => {
-            const existingProduct = state.receipt.find((item) => item._id === payload);
-            existingProduct.quantity -= 1;
-        },
     },
 });
 
-export const { addProduct, removeProduct, closeReceipt, increaseProduct, decreaseProduct, addProductsList } =
-    receiptSlice.actions;
+export const { addProduct, removeProduct, closeReceipt, addProductsList } = receiptSlice.actions;
 export default receiptSlice.reducer;

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import scss from "./productsList.module.scss";
 import products from "./produtsList.json";
-import { addProduct, addProductsList } from "../../redux/receipt/receipt-slice";
+import { addProductsList } from "../../redux/receipt/receipt-slice";
 import { fetchAddItem, fetchCreateReceipt } from "../../redux/receipt/receipt-operations";
 import { selectAllProducts, selectReceipId, selectReceiptList } from "../../redux/receipt/receipt-selectors";
 import { useEffect } from "react";
@@ -28,9 +28,6 @@ const ProductsList = () => {
     }, []);
 
     const addToReceipt = (value) => {
-        // const productToAdd = { ...value, quantity: 1 };
-        // dispatch(addProduct(productToAdd));
-
         const itemInfo = {
             product_id: value._id,
             quantity: 1,

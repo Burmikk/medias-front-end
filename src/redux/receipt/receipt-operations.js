@@ -47,6 +47,7 @@ export const fetchEditItem = createAsyncThunk("itmes/fetchEditItem", async (valu
     try {
         if (value.quantity > 0) {
             const { data } = await editItem(value);
+
             return data;
         }
     } catch ({ response }) {
@@ -56,8 +57,8 @@ export const fetchEditItem = createAsyncThunk("itmes/fetchEditItem", async (valu
 
 export const fetchRemoveItem = createAsyncThunk("itmes/fetchRemoveItem", async (value, { rejectWithValue }) => {
     try {
-        const { data } = await removeItem(value);
-        return data;
+        await removeItem(value);
+        return value;
     } catch ({ response }) {
         return rejectWithValue(response);
     }

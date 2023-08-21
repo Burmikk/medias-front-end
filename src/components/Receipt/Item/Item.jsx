@@ -5,36 +5,29 @@ import { increaseProduct, decreaseProduct, removeProduct } from "../../../redux/
 import { fetchEditItem, fetchRemoveItem } from "../../../redux/receipt/receipt-operations";
 
 const Item = ({ product, productIndex }) => {
-    // const [quantity, setQuantity] = useState(product.quantity);
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     if (quantity === 0) {
-    //         dispatch(removeProduct(product._id));
-    //     }
-    // }, [quantity, dispatch, product]);
 
     useEffect(() => {
         if (product.quantity === 0) {
-            dispatch(removeProduct(product._id));
             dispatch(fetchRemoveItem(product._id));
         }
     }, [dispatch, product]);
 
-    const handleIncrease = (value) => {
-        // setQuantity((prevState) => (prevState += 1));
-        dispatch(increaseProduct(value));
+    const handleIncrease = () => {
+        const newQuantity = product.quantity + 1;
 
-        dispatch(fetchEditItem({ item_id: product._id, quantity: product.quantity + 1 }));
+        dispatch(fetchEditItem({ item_id: product._id, quantity: newQuantity }));
     };
-    const handleDecrease = (value) => {
-        // setQuantity((prevState) => (prevState -= 1));
-        dispatch(decreaseProduct(value));
-        dispatch(fetchEditItem({ item_id: product._id, quantity: product.quantity - 1 }));
+    const handleDecrease = () => {
+        const newQuantity = product.quantity - 1;
+        if (newQuantity > 0) {
+            dispatch(fetchEditItem({ item_id: product._id, quantity: newQuantity }));
+        } else {
+            handleRemove();
+        }
     };
 
-    const handleRemove = (value) => {
-        dispatch(removeProduct(value));
+    const handleRemove = () => {
         dispatch(fetchRemoveItem(product._id));
     };
 
