@@ -4,7 +4,7 @@ import Receipt from "./components/Receipt/Receipt";
 
 function App() {
     return (
-        <main>
+        <main className={scss.main}>
             <div className={scss.container}>
                 <ProductsList />
                 <Receipt />

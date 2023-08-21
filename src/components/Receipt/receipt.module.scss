@@ -1,14 +1,35 @@
 .receipt_container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     flex-grow: 1;
     background-color: #fff;
+    border: solid gray;
+    border-top: none;
+}
+.header {
+    min-height: 60px;
+    background-color: #029ca7;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding-left: 10px;
+}
+
+.additional_info {
+    margin-left: 10px;
+}
+.receipt_number {
+    color: #fff;
+    font-weight: 600;
+}
+.receipt_date {
+    color: rgba(255, 255, 255, 0.7);
 }
 .text {
     text-align: center;
     width: 250px;
     margin: 0 auto;
+    margin-top: 100px;
     line-height: 1.5;
 }
 .receipt_list {
@@ -36,15 +57,23 @@
     flex-basis: 150px;
     text-align: center;
 }
+.receipt_info_box {
+    padding: 10px;
+}
 .receipt_info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(246, 246, 246);
+    background-color: #0291db;
     padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
 }
 .total {
     font-weight: 700;
+    font-size: 18px;
 }
 
 .btn {
@@ -52,4 +81,11 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
+    border-radius: 5px;
+    background-color: #0fa701;
+    border-style: none;
+    border: 2px solid rgb(19, 101, 38);
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
 }

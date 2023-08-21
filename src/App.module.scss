@@ -1,9 +1,11 @@
+.main {
+    padding-top: 20px;
+    width: 900px;
+    margin: 0 auto;
+    height: 600px;
+}
 .container {
     display: flex;
-    gap: 10px;
-    width: 900px;
-    height: 600px;
+    height: 100%;
     margin: 0 auto;
-    padding: 10px;
-    background-color: rgb(225, 225, 225);
 }

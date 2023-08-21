@@ -8,7 +8,7 @@ import receiptSlice from "./receipt/receipt-slice";
 const persistConfig = {
     key: "receipt",
     storage,
-    whitelist: ["receipt", "receiptId"],
+    whitelist: ["receipt", "receiptInfo"],
 };
 
 const persistedReducer = persistReducer(persistConfig, receiptSlice);

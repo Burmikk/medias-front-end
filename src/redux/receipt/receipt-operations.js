@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createReceipt, closeReceipt } from "../../shared/api/receiptApi";
 import { createItem, editItem, removeItem } from "../../shared/api/itemsApi";
+import formatedDate from "../../utils/handleDate";
 
 export const fetchCreateReceipt = createAsyncThunk(
     "receipt/fetchCreateReceipt",
@@ -13,6 +14,8 @@ export const fetchCreateReceipt = createAsyncThunk(
             if (selectedProduct) {
                 item.name = selectedProduct.name;
             }
+            const receiptCreatedDate = formatedDate();
+            data.createdDate = receiptCreatedDate;
 
             return { data, item };
         } catch ({ response }) {

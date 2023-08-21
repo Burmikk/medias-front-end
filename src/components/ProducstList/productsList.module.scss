@@ -1,10 +1,29 @@
-.products_wrapper {
+.container {
     flex-basis: 350px;
+}
+.header {
+    height: 60px;
+    background-color: #029ca7;
+    display: flex;
+    align-items: center;
+}
+.chashier {
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+}
+.products_wrapper {
+    height: 520px;
+    overflow: scroll;
+    padding: 10px;
+    background-color: rgb(225, 225, 225);
+}
+.products_list {
     height: 100%;
     background-color: #fff;
-    overflow: scroll;
+    border: 1px solid gray;
 }
-
 .products_item {
     display: flex;
     justify-content: space-between;

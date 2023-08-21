@@ -9,7 +9,7 @@ import {
 const initialState = {
     productsList: [],
     receipt: [],
-    receiptId: "",
+    receiptInfo: {},
     error: null,
     isLoading: false,
 };
@@ -25,7 +25,7 @@ const receiptSlice = createSlice({
             })
             .addCase(fetchCreateReceipt.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
-                state.receiptId = payload.data._id;
+                state.receiptInfo = payload.data;
                 state.receipt = [payload.item];
             })
             .addCase(fetchCreateReceipt.rejected, (state, { payload }) => {
@@ -39,7 +39,7 @@ const receiptSlice = createSlice({
             .addCase(fetchCloseReceipt.fulfilled, (state) => {
                 state.isLoading = false;
                 state.receipt = [];
-                state.receiptId = "";
+                state.receiptInfo = {};
             })
             .addCase(fetchCloseReceipt.rejected, (state, { payload }) => {
                 state.isLoading = false;

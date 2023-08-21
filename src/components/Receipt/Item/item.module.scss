@@ -19,7 +19,11 @@
 .btn {
     width: 30px;
     height: 30px;
+    border-radius: 5px;
     cursor: pointer;
+    &:hover {
+        background-color: rgba(2, 156, 167, 0.564);
+    }
 }
 .quantity {
 }

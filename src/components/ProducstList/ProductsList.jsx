@@ -3,15 +3,16 @@ import scss from "./productsList.module.scss";
 import products from "./produtsList.json";
 import { addProductsList } from "../../redux/receipt/receipt-slice";
 import { fetchAddItem, fetchCreateReceipt } from "../../redux/receipt/receipt-operations";
-import { selectAllProducts, selectReceipId, selectReceiptList } from "../../redux/receipt/receipt-selectors";
+import { selectAllProducts, selectReceiptId, selectReceiptList } from "../../redux/receipt/receipt-selectors";
 import { useEffect } from "react";
 import { getAllProducts } from "../../shared/api/productsApi";
 
 const ProductsList = () => {
     const dispatch = useDispatch();
-    const receiptId = useSelector(selectReceipId);
+    const receiptId = useSelector(selectReceiptId);
     const productList = useSelector(selectAllProducts);
     const receipt = useSelector(selectReceiptList);
+
     const fetchProducts = async () => {
         try {
             const { data } = await getAllProducts();
@@ -56,8 +57,13 @@ const ProductsList = () => {
     });
 
     return (
-        <div className={scss.products_wrapper}>
-            <ul className={scss.products_list}>{allProducts}</ul>
+        <div className={scss.container}>
+            <div className={scss.header}>
+                <p className={scss.chashier}>Каса №1</p>
+            </div>
+            <div className={scss.products_wrapper}>
+                <ul className={scss.products_list}>{allProducts}</ul>
+            </div>
         </div>
     );
 };
