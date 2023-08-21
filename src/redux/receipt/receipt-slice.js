@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCreateReceipt } from "./receipt-operations";
+import { fetchCreateReceipt, fetchCloseReceipt } from "./receipt-operations";
 const initialState = {
     receipt: [],
+    receiptId: "",
     error: null,
     isLoading: false,
 };
@@ -15,10 +16,23 @@ const receiptSlice = createSlice({
                 state.error = null;
                 state.isLoading = true;
             })
-            .addCase(fetchCreateReceipt.fulfilled, (state) => {
+            .addCase(fetchCreateReceipt.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
+                state.receiptId = payload._id;
             })
             .addCase(fetchCreateReceipt.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.error = null;
+                state.error = payload;
+            })
+            .addCase(fetchCloseReceipt.pending, (state) => {
+                state.error = null;
+                state.isLoading = true;
+            })
+            .addCase(fetchCloseReceipt.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(fetchCloseReceipt.rejected, (state, { payload }) => {
                 state.isLoading = false;
                 state.error = null;
                 state.error = payload;

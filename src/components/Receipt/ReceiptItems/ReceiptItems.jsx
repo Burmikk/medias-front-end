@@ -1,6 +1,5 @@
 import { selectReceiptList } from "../../../redux/receipt/receipt-selectors";
 import Item from "../Item/Item";
-import scss from "./receiptItems.module.scss";
 import { useSelector } from "react-redux";
 
 const ReceiptItems = () => {
