@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import scss from "./item.module.scss";
 import { useState, useEffect } from "react";
 import { increaseProduct, decreaseProduct, removeProduct } from "../../../redux/receipt/receipt-slice";
-import { fetchEditItem } from "../../../redux/receipt/receipt-operations";
+import { fetchEditItem, fetchRemoveItem } from "../../../redux/receipt/receipt-operations";
 
 const Item = ({ product, productIndex }) => {
     // const [quantity, setQuantity] = useState(product.quantity);
@@ -13,11 +13,11 @@ const Item = ({ product, productIndex }) => {
     //         dispatch(removeProduct(product._id));
     //     }
     // }, [quantity, dispatch, product]);
-    console.log("render");
 
     useEffect(() => {
         if (product.quantity === 0) {
             dispatch(removeProduct(product._id));
+            dispatch(fetchRemoveItem(product._id));
         }
     }, [dispatch, product]);
 
@@ -35,6 +35,7 @@ const Item = ({ product, productIndex }) => {
 
     const handleRemove = (value) => {
         dispatch(removeProduct(value));
+        dispatch(fetchRemoveItem(product._id));
     };
 
     return (

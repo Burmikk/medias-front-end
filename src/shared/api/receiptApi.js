@@ -8,6 +8,5 @@ export const createReceipt = (value) => {
     return instance.post("receipt/", { total: value });
 };
 export const closeReceipt = (value) => {
-    console.log(value.receiptId);
     return instance.patch(`receipt/${value.receiptId}`, { total: value.total });
 };

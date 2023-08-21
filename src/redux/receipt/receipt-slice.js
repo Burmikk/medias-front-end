@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCreateReceipt, fetchCloseReceipt, fetchAddItem, fetchEditItem } from "./receipt-operations";
+import {
+    fetchCreateReceipt,
+    fetchCloseReceipt,
+    fetchAddItem,
+    fetchEditItem,
+    fetchRemoveItem,
+} from "./receipt-operations";
 const initialState = {
+    productsList: [],
     receipt: [],
     receiptId: "",
     error: null,
@@ -17,8 +24,10 @@ const receiptSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchCreateReceipt.fulfilled, (state, { payload }) => {
+                console.log("payload--->", payload);
                 state.isLoading = false;
-                state.receiptId = payload._id;
+                state.receiptId = payload.data._id;
+                state.receipt = [payload.item];
             })
             .addCase(fetchCreateReceipt.rejected, (state, { payload }) => {
                 state.isLoading = false;
@@ -39,8 +48,9 @@ const receiptSlice = createSlice({
                 state.error = null;
                 state.isLoading = true;
             })
-            .addCase(fetchAddItem.fulfilled, (state) => {
+            .addCase(fetchAddItem.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
+                state.receipt = [...state.receipt, payload];
             })
             .addCase(fetchAddItem.rejected, (state, { payload }) => {
                 state.isLoading = false;
@@ -56,10 +66,24 @@ const receiptSlice = createSlice({
             .addCase(fetchEditItem.rejected, (state, { payload }) => {
                 state.isLoading = false;
                 state.error = payload;
+            })
+            .addCase(fetchRemoveItem.pending, (state) => {
+                state.error = null;
+                state.isLoading = true;
+            })
+            .addCase(fetchRemoveItem.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(fetchRemoveItem.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.error = payload;
             });
     },
 
     reducers: {
+        addProductsList: (state, { payload }) => {
+            state.productsList = payload;
+        },
         addProduct: (state, { payload }) => {
             const existingProduct = state.receipt.find((item) => item._id === payload._id);
             if (!existingProduct) {
@@ -83,5 +107,6 @@ const receiptSlice = createSlice({
     },
 });
 
-export const { addProduct, removeProduct, closeReceipt, increaseProduct, decreaseProduct } = receiptSlice.actions;
+export const { addProduct, removeProduct, closeReceipt, increaseProduct, decreaseProduct, addProductsList } =
+    receiptSlice.actions;
 export default receiptSlice.reducer;
