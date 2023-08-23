@@ -9,6 +9,5 @@ export const editItem = (value) => {
 };
 
 export const removeItem = (value) => {
-    console.log("value--->", value);
     return instance.delete(`items/${value}`);
 };
