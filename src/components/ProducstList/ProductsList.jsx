@@ -24,6 +24,7 @@ const ProductsList = () => {
 
     useEffect(() => {
         fetchProducts();
+        // eslint-disable-next-line
     }, []);
 
     const allProducts = productList.map((item) => {

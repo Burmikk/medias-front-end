@@ -28,7 +28,7 @@ const Receipt = () => {
         setTotal(summ);
     }, [receipt]);
 
-    if (receipt.length === 0) {
+    if (receipt.length === 0 && !receiptId) {
         return (
             <div className={scss.receipt_container}>
                 <div className={scss.header}></div>
@@ -36,7 +36,7 @@ const Receipt = () => {
             </div>
         );
     }
-    if (receipt) {
+    if (receiptId) {
         return (
             <div className={scss.receipt_container}>
                 <div className={scss.header}>
@@ -60,7 +60,7 @@ const Receipt = () => {
                         <p>
                             Загальна сума товарів: <span className={scss.total}>{total} грн.</span>
                         </p>
-                        <button className={scss.btn} onClick={handleCloseReceipt}>
+                        <button disabled={receipt.length === 0} className={scss.btn} onClick={handleCloseReceipt}>
                             Закрити чек
                         </button>
                     </div>
