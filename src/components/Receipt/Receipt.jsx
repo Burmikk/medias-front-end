@@ -58,7 +58,7 @@ const Receipt = () => {
                 <div className={scss.receipt_info_box}>
                     <div className={scss.receipt_info}>
                         <p>
-                            Загальна сума товарів: <span className={scss.total}>{total}</span>
+                            Загальна сума товарів: <span className={scss.total}>{total} грн.</span>
                         </p>
                         <button className={scss.btn} onClick={handleCloseReceipt}>
                             Закрити чек

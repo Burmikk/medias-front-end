@@ -2,16 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import scss from "./productsList.module.scss";
 import products from "./produtsList.json";
 import { addProductsList } from "../../redux/receipt/receipt-slice";
-import { fetchAddItem, fetchCreateReceipt } from "../../redux/receipt/receipt-operations";
-import { selectAllProducts, selectReceiptId, selectReceiptList } from "../../redux/receipt/receipt-selectors";
+import { selectAllProducts } from "../../redux/receipt/receipt-selectors";
 import { useEffect } from "react";
 import { getAllProducts } from "../../shared/api/productsApi";
+import Product from "./Product/Product";
 
 const ProductsList = () => {
     const dispatch = useDispatch();
-    const receiptId = useSelector(selectReceiptId);
     const productList = useSelector(selectAllProducts);
-    const receipt = useSelector(selectReceiptList);
 
     const fetchProducts = async () => {
         try {
@@ -28,32 +26,8 @@ const ProductsList = () => {
         fetchProducts();
     }, []);
 
-    const addToReceipt = (value) => {
-        const itemInfo = {
-            product_id: value._id,
-            quantity: 1,
-            price: value.price,
-        };
-        if (!receiptId) {
-            dispatch(fetchCreateReceipt(itemInfo));
-        } else {
-            const isProductDublicate = receipt.find((product) => {
-                return product.product_id === itemInfo.product_id;
-            });
-
-            if (!isProductDublicate) {
-                dispatch(fetchAddItem({ ...itemInfo, receipt_id: receiptId }));
-            }
-        }
-    };
-
     const allProducts = productList.map((item) => {
-        return (
-            <li className={scss.products_item} key={item._id} onClick={() => addToReceipt(item)}>
-                <p>{item.name}</p>
-                <p>{`${item.price} грн.`}</p>
-            </li>
-        );
+        return <Product item={item} />;
     });
 
     return (

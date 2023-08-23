@@ -22,13 +22,5 @@
 .products_list {
     height: 100%;
     background-color: #fff;
-    border: 1px solid gray;
-}
-.products_item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid gray;
-    background-color: rgb(246, 246, 246);
-    cursor: pointer;
+    outline: 1px solid gray;
 }
