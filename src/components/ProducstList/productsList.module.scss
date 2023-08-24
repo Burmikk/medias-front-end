@@ -15,12 +15,11 @@
 }
 .products_wrapper {
     height: 520px;
-    overflow: scroll;
+    overflow: auto;
     padding: 10px;
     background-color: rgb(225, 225, 225);
 }
 .products_list {
-    height: 100%;
     background-color: #fff;
     outline: 1px solid gray;
 }

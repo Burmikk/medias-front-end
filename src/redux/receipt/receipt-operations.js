@@ -9,8 +9,8 @@ export const fetchCreateReceipt = createAsyncThunk(
         try {
             const { data } = await createReceipt(value.price);
             const { data: item } = await createItem({ ...value, receipt_id: data._id });
-            const { receipt } = getState();
-            const selectedProduct = receipt.productsList.find((product) => product._id === item.product_id);
+            const { products } = getState();
+            const selectedProduct = products.productsList.find((product) => product._id === item.product_id);
             if (selectedProduct) {
                 item.name = selectedProduct.name;
             }
@@ -35,8 +35,8 @@ export const fetchCloseReceipt = createAsyncThunk("receipt/fetchCloseReceipt", a
 export const fetchAddItem = createAsyncThunk("itmes/fetchAddItem", async (value, { rejectWithValue, getState }) => {
     try {
         const { data } = await createItem(value);
-        const { receipt } = getState();
-        const selectedProduct = receipt.productsList.find((product) => product._id === data.product_id);
+        const { products } = getState();
+        const selectedProduct = products.productsList.find((product) => product._id === data.product_id);
         if (selectedProduct) {
             data.name = selectedProduct.name;
         }

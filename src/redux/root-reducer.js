@@ -4,6 +4,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import receiptSlice from "./receipt/receipt-slice";
+import productsSlice from "./products/products-slice";
 
 const persistConfig = {
     key: "receipt",
@@ -14,6 +15,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, receiptSlice);
 
 const rootReducer = combineReducers({
+    products: productsSlice,
     receipt: persistedReducer,
 });
 

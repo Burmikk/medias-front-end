@@ -7,7 +7,6 @@ import {
     fetchRemoveItem,
 } from "./receipt-operations";
 const initialState = {
-    productsList: [],
     receipt: [],
     receiptInfo: {},
     error: null,
@@ -85,13 +84,6 @@ const receiptSlice = createSlice({
                 state.error = payload;
             });
     },
-
-    reducers: {
-        addProductsList: (state, { payload }) => {
-            state.productsList = payload;
-        },
-    },
 });
 
-export const { addProductsList } = receiptSlice.actions;
 export default receiptSlice.reducer;
