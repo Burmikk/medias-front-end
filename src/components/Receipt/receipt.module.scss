@@ -91,5 +91,11 @@
     font-size: 18px;
     &:disabled {
         background-color: #7f807e;
+        &:hover {
+            background-color: #7f807e;
+        }
+    }
+    &:hover {
+        background-color: #0d9300;
     }
 }
