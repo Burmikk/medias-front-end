@@ -29,7 +29,7 @@ export const fetchCloseReceipt = createAsyncThunk("receipt/fetchCloseReceipt", a
     try {
         const data = await closeReceipt(value);
         if (data.status === 200) {
-            toast.success("Receipt successfully closed", {
+            toast.success("Чек успішно закрито", {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
