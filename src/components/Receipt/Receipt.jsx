@@ -5,6 +5,9 @@ import ReceiptItem from "./ReceiptItems/ReceiptItems";
 import { useEffect, useState } from "react";
 import { fetchCloseReceipt } from "../../redux/receipt/receipt-operations";
 import { IoReceiptOutline } from "react-icons/io5";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 const Receipt = () => {
     const [total, setTotal] = useState();
     const receipt = useSelector(selectReceiptList);
@@ -32,7 +35,8 @@ const Receipt = () => {
         return (
             <div className={scss.receipt_container}>
                 <div className={scss.header}></div>
-                <h3 className={scss.text}>Для створення чеку виберіть товар</h3>{" "}
+                <h3 className={scss.text}>Для створення чеку виберіть товар</h3>
+                <ToastContainer />
             </div>
         );
     }

@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createReceipt, closeReceipt } from "../../shared/api/receiptApi";
 import { createItem, editItem, removeItem } from "../../shared/api/itemsApi";
 import formatedDate from "../../utils/handleDate";
+import { toast } from "react-toastify";
 
 export const fetchCreateReceipt = createAsyncThunk(
     "receipt/fetchCreateReceipt",
@@ -26,7 +27,19 @@ export const fetchCreateReceipt = createAsyncThunk(
 
 export const fetchCloseReceipt = createAsyncThunk("receipt/fetchCloseReceipt", async (value, { rejectWithValue }) => {
     try {
-        await closeReceipt(value);
+        const data = await closeReceipt(value);
+        if (data.status === 200) {
+            toast.success("Receipt successfully closed", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     } catch ({ response }) {
         return rejectWithValue(response);
     }
